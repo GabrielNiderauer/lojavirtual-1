@@ -2,7 +2,7 @@
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-6">
         <form action="{{ url('products/update') }}" method="POST" class="space-y-4">
             @csrf
-            <!-- Campo oculto passando o ID como parâmetro no request -->
+            
             <input type="hidden" name="id" value="{{ $product['id'] }}">
             <br>
             <div>
@@ -36,6 +36,12 @@
                     <option {{ $product->type_id == $type->id ? "selected" : "" }} value="{{ $type->id }}">{{ $type->name }}</option>
                     @endforeach
                 </select>
+            </div>
+
+            <div>
+                <x-input-label for="image" :value="__('Imagem')" />
+                <input type="file" id="image" name="image" class="block mt-2 w-full"> 
+                <x-input-error :messages="$errors->get('image')" class="mt-2" />
             </div>
 
             <div class="mt-3 flex justify-between">
